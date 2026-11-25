@@ -1,5 +1,5 @@
 """Collect candidate announcements, never automatically verify eligibility."""
-import json, re, urllib.request, xml.etree.ElementTree as ET
+import json, re, urllib.request, urllib.error, xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import urlparse
 ROOT=Path(__file__).resolve().parent.parent
@@ -24,6 +24,7 @@ def main():
     old=json.loads(path.read_text()) if path.exists() else []
     rows={x["source_url"]:x for x in old}
     success=0
+    health=[]
     for project,chain,feed in SOURCES:
         try:
             req=urllib.request.Request(feed,headers={"User-Agent":"AirdropRadar/0.2"})
@@ -33,9 +34,16 @@ def main():
             if len(raw)>2_000_000: raise ValueError("Feed too large")
             for x in parse(raw,project,chain,feed): rows[x["source_url"]]=x
             success+=1
+            health.append({"project":project,"status":"ok"})
             print(f"{project}: feed parsed successfully")
-        except Exception as e: print(f"{project}: {e}")
+        except urllib.error.HTTPError as e:
+            health.append({"project":project,"status":"rate limited" if e.code==429 else "HTTP "+str(e.code)})
+            print(f"{project}: {e}")
+        except Exception as e:
+            health.append({"project":project,"status":"failed"})
+            print(f"{project}: {e}")
     print(f"Sources successful: {success}/{len(SOURCES)}; stored candidates: {len(rows)}")
+    (ROOT/"data"/"health.json").write_text(json.dumps(health,indent=2)+"\n")
     if not success: raise SystemExit("All sources failed")
     path.write_text(json.dumps(list(rows.values())[-500:],indent=2)+"\n")
 if __name__=="__main__": main()
