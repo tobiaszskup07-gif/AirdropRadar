@@ -1,0 +1,1 @@
+"""AirdropRadar application package."""
