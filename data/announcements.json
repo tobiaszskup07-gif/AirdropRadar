@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "project": "Doppler Finance — XDP",
+    "chain": "Base",
+    "summary": "Secondary reporting describes a genesis distribution for previously registered wallets. Official terms still need checking.",
+    "eligibility": "Reported registered wallets only",
+    "deadline": "2026-11-28T12:00:00Z",
+    "status": "Needs review",
+    "source_url": "https://coingeography.com/airdrops"
+  },
+  {
+    "project": "StandX — DUSD distribution",
+    "chain": "Solana",
+    "summary": "Reported wind-down distribution, not a new token launch.",
+    "eligibility": "Reported existing eligible users",
+    "deadline": "2026-12-31T08:00:00Z",
+    "status": "Needs review",
+    "source_url": "https://coingeography.com/airdrops"
+  },
+  {
+    "project": "Jupiter — Q3 staking rewards",
+    "chain": "Solana",
+    "summary": "Reported quarterly staking rewards, not an airdrop.",
+    "eligibility": "Reported eligible JUP stakers",
+    "deadline": "2027-01-12",
+    "status": "Needs review",
+    "source_url": "https://coingeography.com/airdrops"
+  }
+]
