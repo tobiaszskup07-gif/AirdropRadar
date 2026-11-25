@@ -3,7 +3,7 @@ import json, re, urllib.request, urllib.error, xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import urlparse
 ROOT=Path(__file__).resolve().parent.parent
-SOURCES=[("Ethereum Foundation","Ethereum","https://blog.ethereum.org/en/feed.xml"),("Solana","Solana","https://solana.com/news/rss.xml"),("Base","Base","https://blog.base.org/rss.xml")]
+SOURCES=[("Ethereum Foundation","Ethereum","https://blog.ethereum.org/en/feed.xml"),("Solana","Solana","https://solana.com/news/rss.xml"),("Curve Finance","Ethereum","https://blog.curve.fi/feed"),("Synthetix","Ethereum","https://blog.synthetix.io/rss/"),("Optimism","Ethereum","https://dev.optimism.io/rss/")]
 def parse(raw, project, chain, feed):
     root=ET.fromstring(raw)
     rows=[]
