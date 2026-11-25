@@ -33,7 +33,9 @@ def main():
             if len(raw)>2_000_000: raise ValueError("Feed too large")
             for x in parse(raw,project,chain,feed): rows[x["source_url"]]=x
             success+=1
+            print(f"{project}: feed parsed successfully")
         except Exception as e: print(f"{project}: {e}")
+    print(f"Sources successful: {success}/{len(SOURCES)}; stored candidates: {len(rows)}")
     if not success: raise SystemExit("All sources failed")
     path.write_text(json.dumps(list(rows.values())[-500:],indent=2)+"\n")
 if __name__=="__main__": main()
