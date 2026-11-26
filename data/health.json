@@ -1,0 +1,22 @@
+[
+  {
+    "project": "Ethereum Foundation",
+    "status": "ok"
+  },
+  {
+    "project": "Solana",
+    "status": "rate limited"
+  },
+  {
+    "project": "Curve Finance",
+    "status": "failed"
+  },
+  {
+    "project": "Synthetix",
+    "status": "ok"
+  },
+  {
+    "project": "Optimism",
+    "status": "failed"
+  }
+]
